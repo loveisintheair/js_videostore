@@ -6,23 +6,23 @@ function statement(customer, movies) {
     let result = `Rental Record for ${customer.name}\n`;
     for (let r of customer.rentals) {
         let movie = movies[r.movieID];
-        let thisAmount = 0;
+        let rentalAmount = 0;
 
         // determine amount for each movie
         switch (movie.code) {
             case "regular":
-                thisAmount = 2;
+                rentalAmount = 2;
                 if (r.days > 2) {
-                    thisAmount += (r.days - 2) * 1.5;
+                    rentalAmount += (r.days - 2) * 1.5;
                 }
                 break;
             case "new":
-                thisAmount = r.days * 3;
+                rentalAmount = r.days * 3;
                 break;
             case "childrens":
-                thisAmount = 1.5;
+                rentalAmount = 1.5;
                 if (r.days > 3) {
-                    thisAmount += (r.days - 3) * 1.5;
+                    rentalAmount += (r.days - 3) * 1.5;
                 }
                 break;
         }
@@ -33,8 +33,8 @@ function statement(customer, movies) {
         if (movie.code === "new" && r.days > 2) frequentRenterPoints++;
 
         //print figures for this rental
-        result += `\t${movie.title}\t${thisAmount}\n`;
-        totalAmount += thisAmount;
+        result += `\t${movie.title}\t${rentalAmount}\n`;
+        totalAmount += rentalAmount;
     }
     // add footer lines
     result += `Amount owed is ${totalAmount}\n`;
