@@ -44,6 +44,8 @@ function statement(customer, movies) {
                 }
                 break;
         }
+
+        return rentalAmount;
     }
 }
 
